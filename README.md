@@ -19,8 +19,9 @@ The reason for needing the user to type in movie names and showing them on the m
 - **Finding Suggestions for AutoComplete, Display on the Map**: 
     The app consists of a single page html and JavaScript that queries the backend via a REST API for suggestions and displays the results in a list (autocomplete) as well as on a google map. The application needed to find street names or movie names existing in the data entries based on incomplete user input. This makes the case to use a search engine that can handle the ambiguity of incomplete user input as well as search fast accross multiple dimensions. 
 
-    I opted for Google App Engine primarily because it offers a search engine that needs little/no configuration compared to SOLR or ElasticSearch. Also being very familiar on Python/Django helps as AppEngine supports that stack. The data entries needed to be added to the search engine index as well as imported in a DB for persistence (in case I would need to reindex or whatever). Because of speed the REST API serves data directly from the search engine. Since the data is always the same caching API results on both backend (memcache, redis) or frontend would have been appropriate. Because of my time contraints (spending no more then a few hours on a single day) I didn't get to implement it.
+    I opted for Google App Engine primarily because it offers a search engine that needs little/no configuration compared to SOLR or ElasticSearch. Also being very familiar on Python/Django helps as AppEngine supports that stack. The data entries needed to be added to the search engine index as well as imported in a DB for persistence (in case I would need to reindex or whatever). Because of speed the REST API serves data directly from the search engine. Since the data is always the same caching API results on both backend (memcache, redis) or frontend would have been appropriate. Because of time contraints I didn't get to implement it.
 
+   Some tests on the manager classes would have been nice. So would have been some more time.
 
 
 - **Importing the Data**:
@@ -33,6 +34,7 @@ The reason for needing the user to type in movie names and showing them on the m
 
 
 - **Code**:
+    
     Main JavaScript code is under view/js/app.js
   
     Python code is located under controller, model, service, and test folders.
