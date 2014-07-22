@@ -1,0 +1,12 @@
+{
+  "locations":[ {% for u in movieLocations %}
+    {
+      "key":"{{ u.doc_id }}", 
+      {%for field in u.fields %}
+      "{{field.name}}":"{%if field.value%}{{field.value}}{%endif%}", 
+      {%endfor%}
+      "num":0
+    }{% if not forloop.last %},{%endif%}{%endfor%}
+  ],
+  "limit":{{limit}}
+}

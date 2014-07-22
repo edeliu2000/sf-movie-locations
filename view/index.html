@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0;font-style:Arial; }
+  #autoComplete { 
+    width:450px;
+    border-radius:0.2em;
+  }
+  
+  #map-container { width:450px; height: 450px; margin-top:4px;}
+  
+  .explain{width:450px;font-size:9pt;}
+  
+  #suggestionsParent { 
+    background: none repeat scroll 0 0 #fcfcfc;
+    border-radius: 0.4em;
+    margin-top: 2px;
+    position: absolute;
+    width: 450px;
+    z-index: 10000;
+  }
+  
+  .expanded{
+    min-height: 100px;
+    max-height: 150px;
+    overflow:scroll;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  }
+  
+  .suggestion{
+    width:100%;
+    padding:2px 0px;
+    font-size:10pt;
+    color:#aaa;
+    font-weight:bold;
+    cursor:pointer;
+    border-bottom:1px solid #f4f4f4;
+  }
+</style>
+<body>
+<div class="explain">Type in a movie name. We'll show the scene locations in SF for that movie.
+Type in an SF location. We'll show in what movies it showed up.</div>
+<input type="text" name="autoComplete" id="autoComplete" value="">
+<div id="suggestionsParent"></div>
+<div id="map-container"></div>
+
+<script type="text/javascript" src="/js/xui-1.0.0-min.js"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="/js/app.js"></script>
+</body>
+</html>

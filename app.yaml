@@ -1,0 +1,53 @@
+application: sfmovies-experiment
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /(css|img)/(.*\.(jpg|jpeg|gif|png|css))
+  static_files: view/\1/\2
+  upload: view/(css|img)/(.*\.(jpg|jpeg|gif|png|css))
+  expiration: "3650d 5h"
+
+- url: /(css)/(cssimg)/(.*\.(jpg|jpeg|gif|png))
+  static_files: view/\1/\2/\3
+  upload: view/(css)/(cssimg)/(.*\.(jpg|jpeg|gif|png))
+  expiration: "3650d 5h"
+
+- url: /(js|swf)/(.*\.(js|swf))
+  static_files: view/\1/\2
+  upload: view/(js|swf)/(.*\.(js|swf))
+  expiration: "3650d 5h"
+
+
+
+- url: /
+  static_files: view/index.html
+  upload: view/index.html
+  
+- url: /search.*
+  script: controller.movies.app
+
+
+- url: /admin/.*
+  script: service.dataloader.app
+  login: admin
+  
+- url: /worker.*
+  script: service.worker.app  
+  login: admin
+
+
+libraries:
+- name: webapp2
+  version: latest
+- name: webob
+  version: latest
+- name: django
+  version: 1.4 
+ 
+builtins: 
+  
+- deferred: on  
