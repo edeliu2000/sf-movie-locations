@@ -165,7 +165,7 @@ var App = (function(){
       x$('#autoComplete').on("keyup", function(){
         
         if(!autoCompleteObj){
-          autoCompleteObj = new AutoComplete(2, x$('#suggestionsParent'))
+          autoCompleteObj = new AutoComplete(1, x$('#suggestionsParent'))
         }
                 
         autoCompleteObj.onKeyStroke(x$('#autoComplete')[0].value)
