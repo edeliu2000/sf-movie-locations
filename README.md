@@ -17,24 +17,24 @@ The reason for needing the user to type in movie names and showing them on the m
 
 
 - **Finding Suggestions for AutoComplete, Display on the Map**: 
-The app consists of a single page html and JavaScript that queries the backend via a REST API for suggestions and displays the results in a list (autocomplete) as well as on a google map. The application needed to find street names or movie names existing in the data entries based on incomplete user input. This makes the case to use a search engine that can handle the ambiguity of incomplete user input as well as search fast accross multiple dimensions. I opted for Google App Engine primarily because it offers a search engine that needs little/no configuration compared to SOLR or ElasticSearch. Also being very familiar on Python/Django helps as AppEngine supports that stack. The data entries needed to be added to the search engine index as well as imported in a DB for persistence (in case I would need to reindex or whatever). Because of speed the REST API serves data directly from the search engine. Since the data is always the same caching API results on both backend (memcache, redis) or frontend would have been appropriate. Because of my time contraints (spending no more then a few hours on a single day) I didn't get to implement it.
+  The app consists of a single page html and JavaScript that queries the backend via a REST API for suggestions and displays the results in a list (autocomplete) as well as on a google map. The application needed to find street names or movie names existing in the data entries based on incomplete user input. This makes the case to use a search engine that can handle the ambiguity of incomplete user input as well as search fast accross multiple dimensions. I opted for Google App Engine primarily because it offers a search engine that needs little/no configuration compared to SOLR or ElasticSearch. Also being very familiar on Python/Django helps as AppEngine supports that stack. The data entries needed to be added to the search engine index as well as imported in a DB for persistence (in case I would need to reindex or whatever). Because of speed the REST API serves data directly from the search engine. Since the data is always the same caching API results on both backend (memcache, redis) or frontend would have been appropriate. Because of my time contraints (spending no more then a few hours on a single day) I didn't get to implement it.
 
 
 
 - **Importing the Data**:
-There were about 1100 entries that needed to be stored and indexed. A simple data importer uploads a csv file, stores its entries in DB and indexes the entries on the search engine. I chose to use a queue (AppEngine taskqueue) for the indexing to not flood the system with thousands of indexing tasks at once as well as to get retry logic for free if indexing failed for a few entries (AppEngine taskqueue retries until successful). The queue sends tasks to one or more workers at a configured rate per second and the workers do the real indexing. This approach allows for scalable near real-time index updates on entries without blocking the request thread.
+  There were about 1100 entries that needed to be stored and indexed. A simple data importer uploads a csv file, stores its entries in DB and indexes the entries on the search engine. I chose to use a queue (AppEngine taskqueue) for the indexing to not flood the system with thousands of indexing tasks at once as well as to get retry logic for free if indexing failed for a few entries (AppEngine taskqueue retries until successful). The queue sends tasks to one or more workers at a configured rate per second and the workers do the real indexing. This approach allows for scalable near real-time index updates on entries without blocking the request thread.
 
 
 
 - **Frontend**:
-Because of time contraints and the minimal interface needed I opted not to use any of the major JS frameworks like Backbone or Angular. Instead I used my own JS code and a minimal library for cross browser DOM manipulation and xhr (XUI JS). I also could not spend much time in the UI so it's really minimal.
+  Because of time contraints and the minimal interface needed I opted not to use any of the major JS frameworks like Backbone or Angular. Instead I used my own JS code and a minimal library for cross browser DOM manipulation and xhr (XUI JS). I also could not spend much time in the UI so it's really minimal.
 
 
 
 
 SF Movies REST API:
 
-GET http(s)://sfmovies-experiment.appspot.com/search/movie/locations/?name=<movie name or street name in SF>
+GET http(s)://sfmovies-experiment.appspot.com/search/movie/locations/?name=somemoviename
 
 Returns a JSON object with a locations property. Example:
 
