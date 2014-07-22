@@ -15,7 +15,8 @@ The SF Movie app is a single page JS app that communicates with a Restful API ho
 The reason for needing the user to type in movie names and showing them on the map only after clicking was that the data provided for the SF movie locations (about 1100 entries) only had unformated addresses (no geolocations) and I need geolocations to show points on a map. Using a geolocation REST API on the backend during the data import step was first considered. However, there are heavy limits in converting addresses to geolocations for the few geolocation API-s out there (google geolocation API has a limit of 100/day). What I opted for was to use the less restrictive JS geolocation API-s on the fly for the few suggestion results and only show those on the map.
 
 
--Finding Suggestions for AutoComplete, display on the Map
+-Finding Suggestions for AutoComplete, Display on the Map
+
 The app consists of a single page html and JavaScript that queries the backend via a REST API for suggestions and displays the results in a list (autocomplete) as well as on a google map. 
 
 The application needed to find street names or movie names existing in the data entries based on incomplete user input. This makes the case to use a search engine that can handle the ambiguity of incomplete user input as well as search fast accross multiple dimensions. I opted for Google App Engine primarily because it offers a search engine that needs little/no configuration compared to SOLR or ElasticSearch. Also being very familiar on Python/Django helps as AppEngine supports that stack. The data entries needed to be added to the search engine index as well as imported in a DB for persistence (in case I would need to reindex or whatever). Because of speed the REST API serves data directly from the search engine. Since the data is always the same caching API results on both backend (memcache, redis) or frontend would have been appropriate. Because of my time contraints (spending no more then a few hours on a single day) I didn't get to implement it.
@@ -56,5 +57,7 @@ Returns a JSON object with a locations property. Example:
 
 
 Stack:
+
 Backend (Python, Django, AppEngine DataStore, App Engine Search, App Engine Queue)
+
 Frontend (JavaScript, Google Maps API 3, XUI JS used for a few cross browser dom operations and xhr calls, HTML5, CSS)
