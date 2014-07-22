@@ -30,7 +30,7 @@ The reason for needing the user to type in movie names and showing them on the m
 
 
 - **Frontend**:
-    Because of time contraints and the minimal interface needed I opted not to use any of the major JS frameworks like Backbone or Angular. Instead I used my own JS code and a minimal library for cross browser DOM manipulation and xhr (XUI JS). I also could not spend much time in the UI so it's really minimal.
+    A lot of corners had to be cut here because of time. The UI interface is really really barebone. Also, because of time contraints and the minimal interface needed I opted not to use any of the major JS frameworks like Backbone or Angular. Instead I used my own JS code and a minimal library for cross browser DOM manipulation and xhr (XUI JS).
 
 
 - **Code**:
