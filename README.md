@@ -21,12 +21,12 @@ The app consists of a single page html and JavaScript that queries the backend v
 
 
 
-- **Importing the Data**
+- **Importing the Data**:
 There were about 1100 entries that needed to be stored and indexed. A simple data importer uploads a csv file, stores its entries in DB and indexes the entries on the search engine. I chose to use a queue (AppEngine taskqueue) for the indexing to not flood the system with thousands of indexing tasks at once as well as to get retry logic for free if indexing failed for a few entries (AppEngine taskqueue retries until successful). The queue sends tasks to one or more workers at a configured rate per second and the workers do the real indexing. This approach allows for scalable near real-time index updates on entries without blocking the request thread.
 
 
 
-- **Frontend**
+- **Frontend**:
 Because of time contraints and the minimal interface needed I opted not to use any of the major JS frameworks like Backbone or Angular. Instead I used my own JS code and a minimal library for cross browser DOM manipulation and xhr (XUI JS). I also could not spend much time in the UI so it's really minimal.
 
 
