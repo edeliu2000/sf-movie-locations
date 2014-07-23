@@ -76,6 +76,7 @@ var App = (function(){
       //use closure to capture index when used in for loop
       itemClicked = function(index){
         return function(){
+          _this.parentEl.removeClass('expanded')
           _this.suggestions[index].loadGeoLocation();
         };
       };
@@ -162,14 +163,27 @@ var App = (function(){
       map = new Map('map-container');
       map.load();
       
+      //add listener for keystrokes
       x$('#autoComplete').on("keyup", function(){
-        
         if(!autoCompleteObj){
           autoCompleteObj = new AutoComplete(1, x$('#suggestionsParent'))
         }
-                
         autoCompleteObj.onKeyStroke(x$('#autoComplete')[0].value)
       });
+      
+      //show autocomplete on focus
+      x$('#autoComplete').on("focus", function(){
+        var canShow = autoCompleteObj 
+              && autoCompleteObj.suggestions
+              && autoCompleteObj.suggestions.length 
+              && x$('#autoComplete')[0].value;
+        
+        if(canShow){
+          autoCompleteObj.parentEl.addClass('expanded');
+        }
+        
+      });
+      
       
     }
   };
