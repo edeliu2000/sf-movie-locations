@@ -31,6 +31,7 @@
   }
   
   #suggestionsParent { 
+    display:none;
     background: none repeat scroll 0 0 #fcfcfc;
     border-radius: 0.4em;
     margin-top: 2px;
@@ -44,9 +45,12 @@
     overflow:scroll;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);    
+  }
+  
+  #suggestionsParent.expanded{
+    display:block;
     z-index: 10000;
-    
   }
   
   .suggestion{
