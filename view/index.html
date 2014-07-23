@@ -3,14 +3,32 @@
 <style type="text/css">
   html { height: 100% }
   body { height: 100%; margin: 0; padding: 0;font-style:Arial; }
-  #autoComplete { 
+  .container{
     width:450px;
-    border-radius:0.2em;
+    margin:5px 6px;
+  }
+  #autoComplete { 
+    border: 2px solid #ccc;
+    border-radius: 0.2em;
+    font-size: 12pt;
+    width: 100%;
   }
   
-  #map-container { width:450px; height: 450px; margin-top:4px;}
+  #map-container { width:100%; height: 350px; margin-top:4px;}
   
-  .explain{width:450px;font-size:9pt;}
+  h4, h5{
+    color:#666;
+    margin:5px 0px;
+    font-style:Arial;
+  }
+  
+  .explain{
+    width:450px;
+    font-size:9pt;
+    color:#aaa;
+    margin:5px 0px;
+    
+  }
   
   #suggestionsParent { 
     background: none repeat scroll 0 0 #fcfcfc;
@@ -18,7 +36,6 @@
     margin-top: 2px;
     position: absolute;
     width: 450px;
-    z-index: 10000;
   }
   
   .expanded{
@@ -28,6 +45,8 @@
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    z-index: 10000;
+    
   }
   
   .suggestion{
@@ -41,11 +60,15 @@
   }
 </style>
 <body>
-<div class="explain">Type in a movie name. We'll show the scene locations in SF for that movie.
-Type in an SF location. We'll show in what movies it showed up.</div>
+
+<div class="container">
+<h4>SF Movie Locations</h4>
+<h5>Movie Scenes in SF. Try Godzilla, Blue Jasmine, or Powell</h5>
 <input type="text" name="autoComplete" id="autoComplete" value="">
+<div class="explain">Type in a movie name or a street name in SF.</div>
 <div id="suggestionsParent"></div>
 <div id="map-container"></div>
+</div>
 
 <script type="text/javascript" src="/js/xui-1.0.0-min.js"></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js"></script>
